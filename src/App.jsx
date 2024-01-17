@@ -53,6 +53,12 @@ const App = () => {
   }
 
   useEffect(() => {
+   
+    enqueueSnackbar("Open this chatApp in 2 tabs to test its features...", {variant : "info"});
+
+  }, [])
+
+  useEffect(() => {
     socket.on('receive_message', (data) => {
       setA1(false);
       const currentTime = new Date().toLocaleTimeString();
