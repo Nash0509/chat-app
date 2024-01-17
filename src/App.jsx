@@ -111,12 +111,12 @@ const App = () => {
 
   function handleKey(e) {
 
-    if(message == '') {
-      enqueueSnackbar("The text box is empty...", {variant : "warning"});
-      return ;
-    }
 
      if(e.key == 'Enter') {
+      if(message == '') {
+        enqueueSnackbar("The text box is empty...", {variant : "warning"});
+        return ;
+      }
       sendMessage();
       return ;
      }
@@ -229,17 +229,14 @@ const App = () => {
           const inputValue = e.target.value;
   if (inputValue !== '') {
     setTyping(true);
-    // Emit 'typing' event immediately
+
     socket.emit('typing', { room, name, isTyping: true });
     
-    // Set a timer for 2 seconds to emit 'typing' event with isTyping as false
     const timerId = setTimeout(() => {
       setTyping(false);
       socket.emit('typing', { room, name, isTyping: false });
     }, 2000);
-    
-    // Clear the timer if the user starts typing again within 2 seconds
-    // This prevents the previous timer from triggering the event if the user continues typing
+
     return () => clearTimeout(timerId);
   } else {
     setTyping(false);

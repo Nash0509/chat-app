@@ -187,8 +187,9 @@
          }
 
          .bor {
-          border: 10px solid orange;
+          border: 5px solid orange;
           padding: 0px;
+          min-height: 40vh;
          }
 
          .chatAs1 {
