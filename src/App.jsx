@@ -5,7 +5,7 @@ import Footer from './components/Footer';
 import { useSnackbar } from 'notistack';
 import { FaEye, FaPaperPlane , FaCuttlefish, FaGoogle} from 'react-icons/fa'
 
-const socket = io.connect('http://localhost:3000/');
+const socket = io.connect('https://chat-app-backend01.onrender.com');
 
 const App = () => {
   const [message, setMessage] = useState('');
@@ -22,6 +22,12 @@ const App = () => {
 
 
   function sendMessage() {
+
+    if(message == '') {
+      enqueueSnackbar("The text box is empty...", {variant : "warning"});
+      return ;
+    }
+
     const currentTime = new Date().toLocaleTimeString();
     setA1(false);
     setIndi(false);
@@ -99,6 +105,11 @@ const App = () => {
 
   function handleKey(e) {
 
+    if(message == '') {
+      enqueueSnackbar("The text box is empty...", {variant : "warning"});
+      return ;
+    }
+
      if(e.key == 'Enter') {
       sendMessage();
       return ;
@@ -107,6 +118,11 @@ const App = () => {
   }
 
   async function handleTranslate() {
+
+    if(message == '') {
+      enqueueSnackbar("The text box is empty...", {value : 'warning'});
+      return ;
+    }
     
     let siu = message;
     setMessage('Translating...');
